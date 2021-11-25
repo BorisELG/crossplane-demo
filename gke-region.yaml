@@ -1,24 +1,24 @@
-apiVersion: container.gcp.crossplane.io/v1beta1
-kind: GKECluster
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
 metadata:
   name: devops-toolkit
 spec:
   forProvider:
-    location: us-east1
+    location: europe-west4
     initialClusterVersion: latest
 
 ---
 
-apiVersion: container.gcp.crossplane.io/v1alpha1
+apiVersion: container.gcp.crossplane.io/v1beta1
 kind: NodePool
 metadata:
   name: devops-toolkit
 spec:
   forProvider:
     locations:
-    - us-east1-b
-    - us-east1-c
-    - us-east1-d
+    - europe-west4-a
+    - europe-west4-b
+    - europe-west4-c
     clusterRef:
       name: devops-toolkit
     initialNodeCount: 1
@@ -28,8 +28,6 @@ spec:
       oauthScopes:
       - https://www.googleapis.com/auth/cloud-platform
     autoscaling:
-      enabled: true
-      minNodeCount: 1
-      maxNodeCount: 2
+      enabled: false
     management:
       autoUpgrade: false

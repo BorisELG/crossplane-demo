@@ -1,22 +1,22 @@
-apiVersion: container.gcp.crossplane.io/v1beta1
-kind: GKECluster
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
 metadata:
   name: devops-toolkit
 spec:
   forProvider:
-    location: us-east1
+    location: europe-west4
     initialClusterVersion: latest
 
 ---
 
-apiVersion: container.gcp.crossplane.io/v1alpha1
+apiVersion: container.gcp.crossplane.io/v1beta1
 kind: NodePool
 metadata:
   name: devops-toolkit
 spec:
   forProvider:
     locations:
-    - us-east1-b
+    - europe-west4-a
     clusterRef:
       name: devops-toolkit
     initialNodeCount: 1
